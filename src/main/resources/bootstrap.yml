@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+      password: nttdata
+      username: nttdata
+      uri: http://localhost:8090
+  application:
+    name: transfer-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/bancaempresas

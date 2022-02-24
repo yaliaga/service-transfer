@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import pe.com.service.transfer.model.Transfer;
-import pe.com.service.transfer.model.dao.AccountDao;
+import pe.com.service.transfer.model.dto.AccountDto;
+import pe.com.service.transfer.model.dto.TransferDto;
 import pe.com.service.transfer.service.Impl.TransferServiceImpl;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/trasnfer")
+@RequestMapping("/transfer")
 public class TransferController {
 
 	@Autowired
@@ -32,8 +32,8 @@ public class TransferController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<Transfer> create(@RequestBody Transfer transfer) {
-		return transferServiceImpl.createTransfer(transfer);
+	public Mono<TransferDto> create(@RequestBody Mono<TransferDto> transferDtoMono) {
+		return transferServiceImpl.createTransfer(transferDtoMono);
 	}
 	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -60,8 +60,8 @@ public class TransferController {
 	}
 	
 	@GetMapping("/transfer/{idAccount}")
-	public ResponseEntity<Flux<AccountDao>> getClientByAccountDaoId(@PathVariable("idAccountDao") String idAccountDao) {
-		Flux<AccountDao> accountDao = transferServiceImpl.getClientByAccountDaoId(idAccountDao);
-		return new ResponseEntity<Flux<AccountDao>>(accountDao, accountDao != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+	public ResponseEntity<Flux<AccountDto>> getClientByAccountDaoId(@PathVariable("idAccountDao") String idAccountDao) {
+		Flux<AccountDto> accountDto = transferServiceImpl.getClientByAccountDaoId(idAccountDao);
+		return new ResponseEntity<Flux<AccountDto>>(accountDto, accountDto != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 }

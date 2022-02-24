@@ -13,6 +13,7 @@ import lombok.Data;
 public class Transfer {
 	  @Id
 	    private String id;
+	    private String cardNumber;
 	    private String idAccountOrigin;
 	    private String idAccountDestination;
 	    private double amount;

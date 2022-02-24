@@ -1,4 +1,4 @@
-package pe.com.service.transfer.model.dao;
+package pe.com.service.transfer.model.dto;
 
 import java.util.Date;
 
@@ -6,9 +6,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
-public class AccountDao {
+@Getter
+@Setter
+public class AccountDto {
 	@Id
 	private String id;
 	private String typeAccount;

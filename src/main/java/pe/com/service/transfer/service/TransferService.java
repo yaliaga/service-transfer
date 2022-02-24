@@ -2,12 +2,13 @@ package pe.com.service.transfer.service;
 
 
 import pe.com.service.transfer.model.Transfer;
-import pe.com.service.transfer.model.dao.AccountDao;
+import pe.com.service.transfer.model.dto.AccountDto;
+import pe.com.service.transfer.model.dto.TransferDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface TransferService {
-	Mono<Transfer> createTransfer(Transfer transfer);
+	Mono<TransferDto> createTransfer(Mono<TransferDto> entityToDto);
 	
 	Mono<Transfer> findByTransferId(String id);
 
@@ -17,5 +18,7 @@ public interface TransferService {
 
 	Mono<Void> deleteTransfer(String id);
 
-	Flux<AccountDao> getClientByAccountDaoId(String idAccountDao);
+	Flux<AccountDto> getClientByAccountDaoId(String idAccountDao);
+	
+	
 }
